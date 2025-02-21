@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persistence Notes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2 { color: #333; }
+        .section { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Persistence Notes</h1>
+    
+    
+    <div class="section">
+        
+        <p><strong>What are transactions?</strong></p>
+        <p>Transactions are a set of operations that are executed together as a single unit. They ensure that either all the operations are completed successfully or none of them take effect. This prevents data inconsistency, especially in systems handling sensitive information, such as banking applications.</p>
+        
+        <p><strong>What are ACID Properties?</strong></p>
+        <p>ACID properties define the key characteristics of a reliable database transaction:</p>
+        <ul>
+            <li><strong>Atomicity:</strong> Ensures that a transaction is all-or-nothing. If any part of the transaction fails, the entire operation is rolled back.</li>
+            <li><strong>Consistency:</strong> Guarantees that a transaction brings the database from one valid state to another, maintaining integrity constraints.</li>
+            <li><strong>Isolation:</strong> Ensures that concurrent transactions do not interfere with each other, preventing issues like dirty reads and lost updates.</li>
+            <li><strong>Durability:</strong> Ensures that once a transaction is committed, it remains in the database even if a system failure occurs.</li>
+        </ul>
+        
+        <p><strong>Suppose you do not have transactions. Is that system useful? Why?</strong></p>
+        <p>Without transactions, the system may still function, but it would be highly unreliable. If a failure occurs mid-operation, partial data may be saved, leading to corruption and inconsistencies. This is especially problematic in applications requiring high data integrity, such as financial systems.</p>
+        
+        <p><strong>What properties does your file system have?</strong></p>
+        <p>File systems provide a way to store, organize, and manage data efficiently. Most modern file systems, like NTFS or ext4, support features like journaling (which helps recover data after crashes), permissions (to control access), and caching (to optimize performance). However, file systems do not inherently offer ACID compliance like databases.</p>
+        
+        <p><strong>Suppose you do not have "A" in ACID? What happens? When is it ok?</strong></p>
+        <p>Without Atomicity, partial transactions can be committed, leading to data corruption. Imagine transferring money between two bank accounts—if the debit operation succeeds but the credit operation fails, money could disappear. However, in scenarios like logging or telemetry data collection, atomicity may not be critical, as partial entries still provide useful insights.</p>
+        
+        <p><strong>Suppose you do not have "C" in ACID? What happens? When is it ok?</strong></p>
+        <p>Lack of Consistency means the database might enter an invalid state. For example, if an e-commerce website allows an item’s stock to go negative due to inconsistent updates, it could cause operational problems. However, in distributed systems using eventual consistency (like NoSQL databases), temporary inconsistencies are acceptable as long as the system stabilizes over time.</p>
+        
+        <p><strong>Suppose you do not have "I" in ACID? What happens? When is it ok?</strong></p>
+        <p>Without Isolation, concurrent transactions might interfere with each other, leading to issues like dirty reads, where one transaction sees uncommitted changes from another. This could be problematic in online booking systems, where multiple users might double-book the same seat. However, in high-speed analytics where performance matters more than strict correctness, reducing isolation levels can improve efficiency.</p>
+        
+        <p><strong>Suppose you do not have "D" in ACID? What happens? When is it ok?</strong></p>
+        <p>Without Durability, data might be lost if the system crashes after a transaction is committed. This is unacceptable for applications like financial transactions or medical records. However, for temporary caches or in-memory databases where persistence isn’t critical, durability may not be a strict requirement.</p>
+    </div>
+</body>
+</html>
