@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persistent Queue System</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2 { color: #333; }
+        .section { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Persistent Queue System</h1>
+    
+    <div class="section">
+        <h2>Overview</h2>
+        <p>The system consists of a persistent queue where producers submit jobs, and consumers process them. The queue should survive application restarts, ensuring that jobs are not lost even in case of crashes.</p>
+    </div>
+    
+    <div class="section">
+        <h2>System Architecture</h2>
+        <p>There are three main applications interacting with the queue:</p>
+        <ul>
+            <li><strong>Producer:</strong> Submits jobs to the queue.</li>
+            <li><strong>Consumer:</strong> Processes jobs from the queue.</li>
+            <li><strong>Ops/Admin:</strong> Monitors job status, resubmits jobs, and manages failures.</li>
+        </ul>
+        <p>The system supports multiple producers and consumers working simultaneously, ensuring robustness and preventing job duplication.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Key Considerations</h2>
+        <ul>
+            <li>The queue must persist jobs beyond application restarts.</li>
+            <li>Multiple producers and consumers must be able to interact with the queue.</li>
+            <li>Each job must have a unique identifier.</li>
+            <li>Isolation of implementation details to avoid abstraction leaks.</li>
+            <li>Future extensibility for alternative implementations.</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Setup and Design</h2>
+        <p>Project initialization should include a well-documented README explaining the problem, system design, and usage instructions. The queue interface should be structured as an abstract base class, ensuring flexibility in implementation.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Process Management</h2>
+        <p>Since the system involves multiple running applications, process management is crucial. The recommended approach is using Supervisor to manage producers and consumers, ensuring they restart upon failures. Logs must be maintained for debugging.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Implementation Plan</h2>
+        <ul>
+            <li><strong>Producer:</strong> Generates and submits jobs at regular intervals.</li>
+            <li><strong>Consumer:</strong> Processes jobs from the queue, modifying data as required.</li>
+            <li><strong>Persistent Queue:</strong> Implemented using SQLite to ensure data is not lost.</li>
+            <li><strong>Process Management:</strong> Use Supervisor for monitoring and restarting processes.</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Challenges and Considerations</h2>
+        <p>Several challenges must be addressed:</p>
+        <ul>
+            <li>Ensuring jobs are not processed by multiple consumers simultaneously.</li>
+            <li>Handling consumer crashes by allowing other processes to pick up unprocessed jobs.</li>
+            <li>Implementing a mechanism to flag problematic jobs as unprocessable.</li>
+            <li>Using database locking strategies to prevent job duplication.</li>
+        </ul>
+    </div>
+</body>
+</html>
