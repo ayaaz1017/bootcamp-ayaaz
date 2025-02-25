@@ -1,18 +1,24 @@
-from abc import ABC, abstractmethod
+import abc
 
-class PersistentQInterface(ABC):
-    @abstractmethod
-    def enqueue(self, job_id, payload):
+class PersistentQueue(abc.ABC):
+    """Abstract base class for persistent queues."""
+    
+    @abc.abstractmethod
+    def enqueue(self, job_data: dict):
+        """Add a job to the queue."""
         pass
 
-    @abstractmethod
+    @abc.abstractmethod
     def dequeue(self):
+        """Retrieve and lock a job for processing."""
         pass
 
-    @abstractmethod
-    def mark_done(self, job_id):
+    @abc.abstractmethod
+    def mark_complete(self, job_id: int):
+        """Mark a job as completed."""
         pass
 
-    @abstractmethod
-    def mark_failed(self, job_id):
+    @abc.abstractmethod
+    def mark_failed(self, job_id: int):
+        """Mark a job as failed after too many retries."""
         pass
