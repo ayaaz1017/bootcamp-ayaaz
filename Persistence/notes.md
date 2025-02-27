@@ -39,3 +39,5 @@ Debugging serialization issues, handling SQLAlchemy ORM errors, and optimizing d
 ---
 
 *Note: This document is based on my experience working with persistence in Python.*
+
+[Chat with ChatGPT](https://chatgpt.com/c/67c07304-0dcc-8010-9fb2-cbcd9fbd2717)

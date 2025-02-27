@@ -34,3 +34,5 @@ Official API documentation for GitHub, OpenWeatherMap, and SpaceX was essential 
 ---
 
 *Note: This document was created based on my experience working with APIs.*
+
+[Chat with ChatGPT](https://chatgpt.com/c/67c074c7-c3b0-8010-91b6-eb200371b1b0)

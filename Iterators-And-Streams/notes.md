@@ -31,3 +31,5 @@ Official Python documentation on `itertools` and `fileinput` provided additional
 ---
 
 *Note: This document was created based on my experience solving the problem.*
+
+[Chat with ChatGPT](https://chatgpt.com/c/67c0724f-2090-8010-a38c-6da98801b71b)
